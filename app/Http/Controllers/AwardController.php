@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Google\Cloud\Vision\VisionClient;
 use App\Models\Award;
+use URL;
 
 class AwardController extends Controller
 {
@@ -52,8 +53,9 @@ class AwardController extends Controller
   {
     $rewardsId = $request->route('id');
     $award = Award::find($rewardsId);
-    // return $this->requestToGoogleAPI(time(), URL::to('/') . "/images/" . $award->img_url);
-    return $this->requestToGoogleAPI(time(), "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484249087,538554565&fm=15&gp=0.jpg");
+    dd(URL::to('/') . "/images/" . $award->img_url);
+    return $this->requestToGoogleAPI(time(), URL::to('/') . "/images/" . $award->img_url);
+    // return $this->requestToGoogleAPI(time(), "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484249087,538554565&fm=15&gp=0.jpg");
   }
 
   public function dashboard()
