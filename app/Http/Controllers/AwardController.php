@@ -53,7 +53,7 @@ class AwardController extends Controller
   {
     $rewardsId = $request->route('id');
     $award = Award::find($rewardsId);
-    dd(URL::to('/') . "/images/" . $award->img_url);
+    // dd(URL::to('/') . "/images/" . $award->img_url);
     return $this->requestToGoogleAPI(time(), URL::to('/') . "/images/" . $award->img_url);
     // return $this->requestToGoogleAPI(time(), "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484249087,538554565&fm=15&gp=0.jpg");
   }
@@ -83,14 +83,14 @@ class AwardController extends Controller
     $info = $document->info();
     $text = $document->text();
 
-  // $select = $annotation->fullText(); 
+  $select = $annotation->fullText(); 
     file_put_contents(public_path('gstest.json'), json_encode($pages));
     $jsonfilename = $uniqid . ".json";
     $txtfilename = $uniqid . ".txt";
     // $bool = Storage::disk('reports')->put($jsonfilename, json_encode($pages));
     // $bool = Storage::disk('reports')->put($txtfilename, $text);
-
-    $this->readTextFromJsonData($jsonfilename, $txtfilename);
+return $select;
+    // $this->readTextFromJsonData($jsonfilename, $txtfilename);
 
   } 
 }
