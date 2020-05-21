@@ -6,7 +6,6 @@ $(document).ready(function() {
  });
 
   $("#vision-btn").click(function() {
-    alert("vision");
     $.ajax({
       type: "POST",
       url: '/vision/'+$(this).val(),
