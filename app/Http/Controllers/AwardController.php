@@ -68,32 +68,43 @@ class AwardController extends Controller
   {
   // get pages data from googleapis
 
-    $vision = new VisionClient(['keyFile' => json_decode(file_get_contents(env('GOOGLE_APPLICATION_CREDENTIALS')), true)]); 
+  //   $vision = new VisionClient(['keyFile' => json_decode(file_get_contents(env('GOOGLE_APPLICATION_CREDENTIALS')), true)]); 
 
-    $image = $vision->image(
-      fopen($filePath, 'r'),
-      ['TEXT_DETECTION']
-    );
+  //   $image = $vision->image(
+  //     fopen($filePath, 'r'),
+  //     ['TEXT_DETECTION']
+  //   );
 
-    $annotation = $vision->annotate($image);
-    $earlyText = $annotation->text()[0]->description();
-    $document = $annotation->fullText();
-    $pages = $document->pages();
-    $info = $document->info();
-    $text = $document->text();
+  //   $annotation = $vision->annotate($image);
+  //   $earlyText = $annotation->text()[0]->description();
+  //   $document = $annotation->fullText();
+  //   $pages = $document->pages();
+  //   $info = $document->info();
+  //   $text = $document->text();
 
-  // $select = $annotation->fullText(); 
-    $bool = Storage::disk('reports')->put($uniqid . '_info.json', json_encode($info));
-    // file_put_contents(public_path($uniqid . '_info.json'), json_encode($info));
-    $jsonfilename = $uniqid . "_pages.json";
-    $txtfilename = $uniqid . ".txt";
-    $bool = Storage::disk('reports')->put($jsonfilename, json_encode($pages));
-    $bool = Storage::disk('reports')->put($txtfilename, $text);
+  // // $select = $annotation->fullText(); 
+  //   $bool = Storage::disk('reports')->put($uniqid . '_info.json', json_encode($info));
+  //   // file_put_contents(public_path($uniqid . '_info.json'), json_encode($info));
+  //   $jsonfilename = $uniqid . "_pages.json";
+  //   $txtfilename = $uniqid . ".txt";
+  //   $bool = Storage::disk('reports')->put($jsonfilename, json_encode($pages));
+  //   $bool = Storage::disk('reports')->put($txtfilename, $text);
 
-    $this->readTextFromJsonData($uniqid);
+  //   $txt_string = (Storage::disk('reports')->get($uniqid . ".txt"));
+    $txt_string = "
+荣誉证书
+杨军老师:
+在 2012 年丹阳市教师现代教育技术论文评比活动
+中,你(们)撰写的论文_运用信息技术挖掘学生潜能提
+高教学效率 荣获_一等奖,特发此证。
+信。
+丹阳教育信息中心
+二Q一年九月
+";
+    return $txt_string;
   }
 
-public function readTextFromJsonData($uniqid)
+  public function readTextFromJsonData($uniqid)
   {
     $txt_string = (Storage::disk('reports')->get($uniqid . ".txt"));
     // $json_string = (Storage::disk('reports')->get($uniqid . ".text"));

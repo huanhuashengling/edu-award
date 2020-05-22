@@ -11,6 +11,7 @@ $(document).ready(function() {
       url: '/vision/'+$(this).val(),
       success: function( data ) {
         console.log(data);
+        $("#isVisionedCheck").val("checked");
         $("#vision-txt").text(data);
       }
     });
