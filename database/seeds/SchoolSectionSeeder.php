@@ -16,7 +16,7 @@ class SchoolSectionSeeder extends Seeder
         ['label' => "初中"],
         ['label' => "小学"],
         ['label' => "幼儿园"],
-        ['label' => "其他"],
+        ['label' => "未注明"],
       ]);
     }
 }
