@@ -15,6 +15,7 @@ class AwardLevelSeeder extends Seeder
         ['label' => "国家级"],
         ['label' => "省级"],
         ['label' => "市级"],
+        ['label' => "县级"],
         ['label' => "区级"],
         ['label' => "校级"],
       ]);

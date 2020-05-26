@@ -9,6 +9,7 @@ use App\Models\AwardType;
 use App\Models\AwardLevel;
 use App\Models\AwardRank;
 use App\Models\Subject;
+use App\Models\SchoolSection;
 use URL;
 use \Storage;
 
@@ -55,7 +56,8 @@ class AwardController extends Controller
     $awardLevels = AwardLevel::all();
     $awardRanks = AwardRank::all();
     $subjects = Subject::all();
-    return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects'));
+    $schoolSections = SchoolSection::all();
+    return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects', 'schoolSections'));
   }
 
   public function save(Request $request)
@@ -72,6 +74,7 @@ class AwardController extends Controller
       'awardDate' => 'required',
       'awardStory' => 'required',
       'subjectsId' => 'required',
+      'schoolSectionsId' => 'required',
     ]);
     $awardsId = $request->get('awards_id');
     $award = Award::find($awardsId);
@@ -87,6 +90,7 @@ class AwardController extends Controller
     $award->award_story = $request->get('awardStory');
     $award->vision_txt = $request->get('hiddenVisionTxt');
     $award->subjects_id = $request->get('subjectsId');
+    $award->school_sections_id = $request->get('schoolSectionsId');
     $award->update();
     // dd(Award::find($awardsId));
     return back()

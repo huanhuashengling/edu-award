@@ -43,6 +43,8 @@ class CreateAwardsTable extends Migration
             $table->string('issuer')->nullable();
             // subjects_id 所属学科
             $table->string('subjects_id')->nullable();
+            // school_sections_id 所属学段
+            $table->string('school_sections_id')->nullable();
             $table->timestamps();
         });
     }

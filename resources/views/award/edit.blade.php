@@ -78,13 +78,13 @@
 
               <div class="form-group col-md-3">
                 <label for="awardee">获奖人</label>
-                <input type="text" class="form-control" name="awardee" placeholder="获奖人" value="{{$award->awardee}}" required>
+                <input type="text" class="form-control" name="awardee" placeholder="自己的名字" value="{{$award->awardee}}" required>
               </div>
 
 
               <div class="form-group col-md-3">
                 <label for="awardYear">获奖年度</label>
-                <input type="text" class="form-control" name="awardYear" placeholder="获奖年度" value="{{$award->award_year}}" required>
+                <input type="text" class="form-control" name="awardYear" placeholder="例:2019" value="{{$award->award_year}}" required>
               </div>
             </div>
 
@@ -97,8 +97,8 @@
             
             <div class="form-row"> 
               <div class="form-group col-md-12">
-                <label for="title">论文标题</label>
-                <input type="text" class="form-control" name="title" placeholder="论文标题" value="{{$award->title}}" required>
+                <label for="title">内容标题</label>
+                <input type="text" class="form-control" name="title" placeholder="论文标题/课堂教学课题等" value="{{$award->title}}" required>
               </div>
             </div> 
 
@@ -111,7 +111,7 @@
 
             <div class="form-row">
 
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="awardRanksId">获奖等第</label>
                 <select name="awardRanksId" class="form-control" required>
                   <option value="" selected>请选择等第</option>
@@ -121,8 +121,19 @@
                   @endforeach
                 </select>
               </div>
+              
+              <div class="form-group col-md-3">
+                <label for="schoolSectionsId">所属学段</label>
+                <select name="schoolSectionsId" class="form-control" required>
+                  <option value="" selected>请选择学段</option>
+                  @foreach($schoolSections as $schoolSection)
+                  <option value="{{$schoolSection->id}}" {{($award->schoolSections_id == $schoolSection->id)?"selected":""}}>
+                    {{$schoolSection->label}}</option>
+                  @endforeach
+                </select>
+              </div>
 
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="subjectsId">所属学科</label>
                 <select name="subjectsId" class="form-control" required>
                   <option value="" selected>请选择学科</option>
@@ -133,7 +144,7 @@
                 </select>
               </div>
 
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="awardDate">获得日期</label>
                 <input type="text" class="form-control" name="awardDate" placeholder="例:201903/20190312" value="{{$award->award_date}}" required>
               </div>
