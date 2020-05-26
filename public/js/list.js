@@ -11,8 +11,9 @@ $(document).ready(function() {
       url: '/vision/'+$(this).val(),
       success: function( data ) {
         console.log(data);
-        $("#isVisionedCheck").val("checked");
+        $("#isVisionedCheck").attr("checked", "checked");
         $("#vision-txt").text(data);
+        $("#hiddenVisionTxt").val(data);
       }
     });
   });

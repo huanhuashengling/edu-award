@@ -12,25 +12,27 @@ class AwardSeeder extends Seeder
     public function run()
     {
       DB::table('awards')->insert([
-        'awardee' => "wj",
-        'award_types_id' => '1',
+        'awardee' => "",
+        'award_types_id' => '',
         'title' => '',
         'img_url' => "1588686399.jpeg",
-        'award_years' => "2012",
-        'award_level' => "一等奖",
-        'award_date' => "201209",
+        'award_year' => "",
+        'award_levels_id' => "",
+        'award_ranks_id' => "",
+        'award_date' => "",
         'is_visioned' => "false",
         'vision_txt' => "",
       ]);
 
       DB::table('awards')->insert([
-        'awardee' => "wj",
-        'award_types_id' => '1',
+        'awardee' => "",
+        'award_types_id' => '',
         'title' => '',
         'img_url' => "1589495785.jpeg",
-        'award_years' => "2012",
-        'award_level' => "一等奖",
-        'award_date' => "201209",
+        'award_year' => "",
+        'award_levels_id' => "",
+        'award_ranks_id' => "",
+        'award_date' => "",
         'is_visioned' => "false",
         'vision_txt' => "",
       ]);

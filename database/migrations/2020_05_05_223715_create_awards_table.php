@@ -26,9 +26,9 @@ class CreateAwardsTable extends Migration
             // award_year 获奖年度
             $table->string('award_year')->nullable();
             // award_level 获奖级别
-            $table->string('award_level')->nullable();
+            $table->string('award_levels_id')->nullable();
             // award_level 获奖等第
-            $table->string('award_rank')->nullable();
+            $table->string('award_ranks_id')->nullable();
             // award_date 获得日期
             $table->string('award_date')->nullable();
             // is_visioned 是否已被视觉化
@@ -41,6 +41,8 @@ class CreateAwardsTable extends Migration
             $table->string('event_title')->nullable();
             // issuer 颁发单位
             $table->string('issuer')->nullable();
+            // subjects_id 所属学科
+            $table->string('subjects_id')->nullable();
             $table->timestamps();
         });
     }

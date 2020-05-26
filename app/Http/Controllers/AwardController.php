@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Google\Cloud\Vision\VisionClient;
 use App\Models\Award;
+use App\Models\AwardType;
+use App\Models\AwardLevel;
+use App\Models\AwardRank;
+use App\Models\Subject;
 use URL;
 use \Storage;
 
@@ -38,22 +42,61 @@ class AwardController extends Controller
 
   public function detail(Request $request)
   {
-    $rewardsId = $request->route('id');
-    $award = Award::find($rewardsId);
+    $awardsId = $request->route('id');
+    $award = Award::find($awardsId);
     return view('award.detail', compact('award'));
   }
 
   public function edit(Request $request)
   {
-    $rewardsId = $request->route('id');
-    $award = Award::find($rewardsId);
-    return view('award.edit', compact('award'));
+    $awardsId = $request->route('id');
+    $award = Award::find($awardsId);
+    $awardTypes = AwardType::all();
+    $awardLevels = AwardLevel::all();
+    $awardRanks = AwardRank::all();
+    $subjects = Subject::all();
+    return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects'));
+  }
+
+  public function save(Request $request)
+  {
+    $this->validate(request(), [
+      'awardTypesId' => 'required',
+      'awardLevelsId' => 'required',
+      'awardee' => 'required',
+      'awardYear' => 'required',
+      'eventTitle' => 'required',
+      'title' => 'required',
+      'awardRanksId' => 'required',
+      'issuer' => 'required',
+      'awardDate' => 'required',
+      'awardStory' => 'required',
+      'subjectsId' => 'required',
+    ]);
+    $awardsId = $request->get('awards_id');
+    $award = Award::find($awardsId);
+    $award->award_types_id = $request->get('awardTypesId');
+    $award->award_levels_id = $request->get('awardLevelsId');
+    $award->awardee = $request->get('awardee');
+    $award->award_year = $request->get('awardYear');
+    $award->event_title = $request->get('eventTitle');
+    $award->title = $request->get('title');
+    $award->award_ranks_id = $request->get('awardRanksId');
+    $award->issuer = $request->get('issuer');
+    $award->award_date = $request->get('awardDate');
+    $award->award_story = $request->get('awardStory');
+    $award->vision_txt = $request->get('hiddenVisionTxt');
+    $award->subjects_id = $request->get('subjectsId');
+    $award->update();
+    // dd(Award::find($awardsId));
+    return back()
+      ->with('status','You have successfully update data.');
   }
 
   public function vision(Request $request)
   {
-    $rewardsId = $request->route('id');
-    $award = Award::find($rewardsId);
+    $awardsId = $request->route('id');
+    $award = Award::find($awardsId);
     // dd(public_path("images/" . $award->img_url));
     return $this->requestToGoogleAPI(time(), public_path("images/" . $award->img_url));
     // return $this->requestToGoogleAPI(time(), "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484249087,538554565&fm=15&gp=0.jpg");
@@ -68,40 +111,40 @@ class AwardController extends Controller
   {
   // get pages data from googleapis
 
-  //   $vision = new VisionClient(['keyFile' => json_decode(file_get_contents(env('GOOGLE_APPLICATION_CREDENTIALS')), true)]); 
+    $vision = new VisionClient(['keyFile' => json_decode(file_get_contents(env('GOOGLE_APPLICATION_CREDENTIALS')), true)]); 
 
-  //   $image = $vision->image(
-  //     fopen($filePath, 'r'),
-  //     ['TEXT_DETECTION']
-  //   );
+    $image = $vision->image(
+      fopen($filePath, 'r'),
+      ['TEXT_DETECTION']
+    );
 
-  //   $annotation = $vision->annotate($image);
-  //   $earlyText = $annotation->text()[0]->description();
-  //   $document = $annotation->fullText();
-  //   $pages = $document->pages();
-  //   $info = $document->info();
-  //   $text = $document->text();
+    $annotation = $vision->annotate($image);
+    $earlyText = $annotation->text()[0]->description();
+    $document = $annotation->fullText();
+    $pages = $document->pages();
+    $info = $document->info();
+    $text = $document->text();
 
-  // // $select = $annotation->fullText(); 
-  //   $bool = Storage::disk('reports')->put($uniqid . '_info.json', json_encode($info));
-  //   // file_put_contents(public_path($uniqid . '_info.json'), json_encode($info));
-  //   $jsonfilename = $uniqid . "_pages.json";
-  //   $txtfilename = $uniqid . ".txt";
-  //   $bool = Storage::disk('reports')->put($jsonfilename, json_encode($pages));
-  //   $bool = Storage::disk('reports')->put($txtfilename, $text);
+  // $select = $annotation->fullText(); 
+    $bool = Storage::disk('reports')->put($uniqid . '_info.json', json_encode($info));
+    // file_put_contents(public_path($uniqid . '_info.json'), json_encode($info));
+    $jsonfilename = $uniqid . "_pages.json";
+    $txtfilename = $uniqid . ".txt";
+    $bool = Storage::disk('reports')->put($jsonfilename, json_encode($pages));
+    $bool = Storage::disk('reports')->put($txtfilename, $text);
 
-  //   $txt_string = (Storage::disk('reports')->get($uniqid . ".txt"));
-    $txt_string = "
-荣誉证书
-杨军老师:
-在 2012 年丹阳市教师现代教育技术论文评比活动
-中,你(们)撰写的论文_运用信息技术挖掘学生潜能提
-高教学效率 荣获_一等奖,特发此证。
-信。
-丹阳教育信息中心
-二Q一年九月
-";
-    return $txt_string;
+    $txt_string = (Storage::disk('reports')->get($uniqid . ".txt"));
+//     $txt_string = "
+// 荣誉证书
+// 杨军老师:
+// 在 2012 年丹阳市教师现代教育技术论文评比活动
+// 中,你(们)撰写的论文_运用信息技术挖掘学生潜能提
+// 高教学效率 荣获_一等奖,特发此证。
+// 信。
+// 丹阳教育信息中心
+// 二Q一年九月
+// ";
+    return str_replace('"', '', $txt_string);
   }
 
   public function readTextFromJsonData($uniqid)

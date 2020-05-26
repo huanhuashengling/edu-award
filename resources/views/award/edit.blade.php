@@ -6,12 +6,11 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">完善荣誉信息</div>
+        <div class="card-header">编辑荣誉信息</div>
           
           <div class="card-body">
-          <label>荣誉照片</label>
-          <div>
-            <img class="img-thumbnail img-fluid" src="/images/{{$award->img_url}}" />
+          <div class="text-center">
+            <img class="img-thumbnail img-fluid" style="width: 500px" src="/images/{{$award->img_url}}" />
           </div>
           @if (session('status'))
           <div class="alert alert-success" role="alert">
@@ -30,97 +29,128 @@
           </div>
           @endif
 
-          <div>
-            <button type="button" id="vision-btn" value="{{$award->id}}" class="btn btn-primary">解析图片中的文本</button>
+          <div class="text-center">
+            <button type="button" id="vision-btn" value="{{$award->id}}" class="btn btn-primary">读取文本
+              <svg class="bi bi-chevron-double-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </button>
           </div>
 
-          文本获取结果：
-          <label id="vision-txt"></label>
+          <div class="alert alert-primary" role="alert">
+            <p id="vision-txt">{{$award->vision_txt}}</p>
+          </div>
           
           <form action="{{ route('save.award.post') }}" method="POST" enctype="multipart/form-data">
             @csrf
-
-          <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="isvisionedCheck">
-              <label class="form-check-label" for="gridCheck">
+            <input type="hidden" name="awards_id" value="{{$award->id}}">
+            <input type="hidden" name="hiddenVisionTxt" id="hiddenVisionTxt">
+            <!-- <div class="form-group">
+              <label>
+                <input type="checkbox" value="" name="isVisioned" checked="{{('true' == $award->is_visioned)?'checked':''}}">
                 该图片已解析
               </label>
-            </div>
-          </div>
+            </div> -->
+            <div class="form-row">
 
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="awardee">获奖人</label>
-                <input type="text" class="form-control" id="awardee" placeholder="获奖人">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="awardLevel">获奖级别</label>
-                <select id="awardLevel" class="form-control">
-                  <option selected>请选择级别</option>
-                  <option>国家级</option>
-                  <option>省级</option>
-                  <option>市级</option>
-                  <option>区级</option>
-                  <option>校级</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                 <label for="awardTypesId">荣誉类型</label>
-                <select id="awardTypesId" class="form-control">
-                  <option selected>请选择类型</option>
-                  <option>论文撰写</option>
-                  <option>课堂教学</option>
-                  <option>学生辅导</option>
-                  <option>个人素质</option>
-                  <option>志愿服务</option>
+                <select name="awardTypesId" class="form-control" required>
+                  <option value="" selected>请选择类型</option>
+                  @foreach($awardTypes as $awardType)
+                  <option value="{{$awardType->id}}" {{($award->award_types_id == $awardType->id)?"selected":""}}>
+                    {{$awardType->label}}</option>
+                  @endforeach
                 </select>
               </div>
-            </div>
-            <div class="form-row">
+
+              <div class="form-group col-md-3">
+                <label for="awardLevelsId">获奖级别</label>
+                <select name="awardLevelsId" class="form-control" required>
+                  <option value="" selected>请选择级别</option>
+                  @foreach($awardLevels as $awardLevel)
+                  <option value="{{$awardLevel->id}}" {{($award->award_levels_id == $awardLevel->id)?"selected":""}}>
+                    {{$awardLevel->label}}</option>
+                  @endforeach
+                </select>
+              </div>
+
+              <div class="form-group col-md-3">
+                <label for="awardee">获奖人</label>
+                <input type="text" class="form-control" name="awardee" placeholder="获奖人" value="{{$award->awardee}}" required>
+              </div>
+
+
               <div class="form-group col-md-3">
                 <label for="awardYear">获奖年度</label>
-                <input type="text" class="form-control" id="awardYear" placeholder="荣誉标题">
-              </div>
-              <div class="form-group col-md-9">
-                <label for="eventTitle">活动标题</label>
-                <input type="text" class="form-control" id="eventTitle" placeholder="荣誉标题">
+                <input type="text" class="form-control" name="awardYear" placeholder="获奖年度" value="{{$award->award_year}}" required>
               </div>
             </div>
-            <div class="form-group">
-              <label for="title">论文标题</label>
-              <input type="text" class="form-control" id="title" placeholder="荣誉标题">
-            </div>
-            <div class="form-group">
-              <label for="imgUrl">图片路径：{{URL::to('/')}}/images/{{$award->img_url}}</label>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="awardRank">获奖等第</label>
-                <select id="awardRank" class="form-control">
-                  <option selected>请选择等第</option>
-                  <option>特等奖</option>
-                  <option>一等奖</option>
-                  <option>二等奖</option>
-                  <option>三等奖</option>
-                  <option>第一名</option>
-                  <option>第二名</option>
-                  <option>第三名</option>
-                  <option>优胜奖</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4">
-                <label for="awardDate">获得日期</label>
-                <input type="text" class="form-control" id="award_date" placeholder="荣誉日期">
-              </div>
-            </div>
-            <div class="form-row">
+
+            <div class="form-row">  
               <div class="form-group col-md-12">
-                <label for="awardStory">荣誉故事</label>
-                <textarea class="form-control" rows="5" name="awardStory"></textarea> 
+                <label for="eventTitle">活动标题</label>
+                <input type="text" class="form-control" name="eventTitle" placeholder="活动标题" value="{{$award->event_title}}" required>
               </div>
             </div>
             
+            <div class="form-row"> 
+              <div class="form-group col-md-12">
+                <label for="title">论文标题</label>
+                <input type="text" class="form-control" name="title" placeholder="论文标题" value="{{$award->title}}" required>
+              </div>
+            </div> 
+
+            <div class="form-row"> 
+              <div class="form-group col-md-12">
+                <label for="issuer">颁发单位</label>
+                <input type="text" class="form-control" name="issuer" placeholder="颁发单位" value="{{$award->issuer}}" required>
+              </div>
+            </div> 
+
+            <div class="form-row">
+
+              <div class="form-group col-md-4">
+                <label for="awardRanksId">获奖等第</label>
+                <select name="awardRanksId" class="form-control" required>
+                  <option value="" selected>请选择等第</option>
+                  @foreach($awardRanks as $awardRank)
+                  <option value="{{$awardRank->id}}" {{($award->award_ranks_id == $awardRank->id)?"selected":""}}>
+                    {{$awardRank->label}}</option>
+                  @endforeach
+                </select>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="subjectsId">所属学科</label>
+                <select name="subjectsId" class="form-control" required>
+                  <option value="" selected>请选择学科</option>
+                  @foreach($subjects as $subject)
+                  <option value="{{$subject->id}}" {{($award->subjects_id == $subject->id)?"selected":""}}>
+                    {{$subject->label}}</option>
+                  @endforeach
+                </select>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="awardDate">获得日期</label>
+                <input type="text" class="form-control" name="awardDate" placeholder="例:201903/20190312" value="{{$award->award_date}}" required>
+              </div>
+
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="awardStory">荣誉故事</label>                   
+                  <textarea class="form-control" rows="5" name="awardStory" value="{{$award->award_story}}" required>好故事</textarea> 
+                </div>
+              </div>
+
+            <!-- <div class="form-group">
+              <label for="imgUrl">图片路径：{{URL::to('/')}}/images/{{$award->img_url}}</label>
+            </div> -->
+
             <button type="submit" class="btn btn-primary">保存</button>
           </form>
         </div>

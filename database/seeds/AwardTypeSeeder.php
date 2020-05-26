@@ -12,7 +12,7 @@ class AwardTypeSeeder extends Seeder
     public function run()
     {
       DB::table('award_types')->insert([
-        'label' => "论文"
+        'label' => "论文撰写"
       ]);
       DB::table('award_types')->insert([
         'label' => "课堂教学"
