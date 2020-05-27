@@ -4,8 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>我的教育荣誉</title>
+      <!-- Bootstrap core CSS -->
+      <link href="css/bootstrap.min.css" rel="stylesheet">
 
+      <!-- Custom styles for this template -->
+      <link href="css/full-width-pics.css" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -64,37 +68,128 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+        <!-- <div class="flex-center position-ref full-height"> -->
+      <!--       @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">主页</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">登录</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">注册</a>
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif -->
+
+<!-- </div> -->
+              <!-- Navigation -->
+              <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                <div class="container">
+                  <a class="navbar-brand" href="#">我的教育荣誉</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="asas">首页
+                          <span class="sr-only">(current)</span>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">服务</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">价格</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">联系</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">登录</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">注册</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                  <!-- Header - set the background image for the header in the line below -->
+                  <header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
+                    <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Award" alt="">
+                    <div style="height: 200px;"></div>
+                  </header>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                  <!-- Content section -->
+                  <section class="py-5" name="asas">
+                    <div class="container">
+                      <h1>我的教育荣誉</h1>
+                      <p class="lead">记录并管理我们教育生涯中所获得的荣誉.</p>
+                      <p>记录教育荣誉可以让我们回顾之前的努力和付出，也可以让我们看到未来要去努力和付出的方向.</p>
+                    </div>
+                  </section>
+
+                  <!-- Image Section - set the background image for the header in the line below -->
+                  <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1081');">
+                    <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
+                    <div style="height: 200px;"></div>
+                  </section>
+
+                  <!-- Content section -->
+                  <section class="py-5">
+                    <div class="container">
+                      <h1>服务</h1>
+                      <p class="lead">让你对自己的荣誉管理得心应手.</p>
+                      <p>1. 保存你的荣誉片；2.视觉化你的荣誉文本；3.保存你的荣誉数据；4.可视化你的荣誉趋势；5.记录你的荣誉故事.</p>
+                    </div>
+                  </section>
+
+                    <!-- Image Section - set the background image for the header in the line below -->
+                  <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1075');">
+                    <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
+                    <div style="height: 200px;"></div>
+                  </section>
+
+                  <!-- Content section -->
+                  <section class="py-5">
+                    <div class="container">
+                      <h1>价格</h1>
+                      <p class="lead">为了帮你管理你的荣誉，我付出了很多.</p>
+                      <p>基础用户，每人每年50元人民币.</p>
+                    </div>
+                  </section>
+
+                    <!-- Image Section - set the background image for the header in the line below -->
+                  <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1077');">
+                    <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
+                    <div style="height: 200px;"></div>
+                  </section>
+
+                  <!-- Content section -->
+                  <section class="py-5">
+                    <div class="container">
+                      <h1>联系</h1>
+                      <p class="lead">Email:shengling_2005@163.com.</p>
+                      <p>我希望得到你的任何反馈.</p>
+                    </div>
+                  </section>
+
+                  <!-- Footer -->
+                  <footer class="py-5 bg-dark">
+                    <div class="container">
+                      <p class="m-0 text-center text-white">Copyright &copy; My Award 2020</p>
+                    </div>
+                    <!-- /.container -->
+                  </footer>
             </div>
-        </div>
+        
+          <!-- Bootstrap core JavaScript -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
