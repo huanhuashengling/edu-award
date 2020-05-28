@@ -94,18 +94,18 @@
                   <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                       <li class="nav-item active">
-                        <a class="nav-link" href="asas">首页
+                        <a class="nav-link" href="#home">首页
                           <span class="sr-only">(current)</span>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">服务</a>
+                        <a class="nav-link" href="#services">服务</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">价格</a>
+                        <a class="nav-link" href="#price">价格</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">联系</a>
+                        <a class="nav-link" href="#contact">联系</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">登录</a>
@@ -120,39 +120,39 @@
 
             <div class="content">
                   <!-- Header - set the background image for the header in the line below -->
-                  <header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
-                    <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Award" alt="">
-                    <div style="height: 200px;"></div>
+                  <header class="py-5 bg-image-full" style="background-image: url('/images/luke-ellis-craven-yCsk1q2Eq0o-unsplash.jpg');" name="home" id="home">
+                    <!-- <img class="img-fluid d-block mx-auto" src="/images/icons8-medal-100.png" alt=""> -->
+                    <div style="height: 300px;"></div>
                   </header>
 
                   <!-- Content section -->
-                  <section class="py-5" name="asas">
+                  <section class="py-5">
                     <div class="container">
                       <h1>我的教育荣誉</h1>
-                      <p class="lead">记录并管理我们教育生涯中所获得的荣誉.</p>
-                      <p>记录教育荣誉可以让我们回顾之前的努力和付出，也可以让我们看到未来要去努力和付出的方向.</p>
+                      <p class="lead">回顾与展望，努力和付出</p>
+                      <p>记录并管理我们教育生涯中所获得的荣誉.</p>
                     </div>
                   </section>
 
                   <!-- Image Section - set the background image for the header in the line below -->
-                  <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1081');">
+                  <section class="py-5 bg-image-full" style="background-image: url('/images/jess-bailey-q10VITrVYUM-unsplash.jpg');" name="services" id="services">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-                    <div style="height: 200px;"></div>
+                    <div style="height: 400px;"></div>
                   </section>
 
                   <!-- Content section -->
                   <section class="py-5">
                     <div class="container">
                       <h1>服务</h1>
-                      <p class="lead">让你对自己的荣誉管理得心应手.</p>
-                      <p>1. 保存你的荣誉片；2.视觉化你的荣誉文本；3.保存你的荣誉数据；4.可视化你的荣誉趋势；5.记录你的荣誉故事.</p>
+                      <p class="lead">存储 可视 数据 趋势 故事</p>
+                      <p>让你对自己的荣誉管理得心应手</p>
                     </div>
                   </section>
 
                     <!-- Image Section - set the background image for the header in the line below -->
-                  <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1075');">
+                  <section class="py-5 bg-image-full" style="background-image: url('/images/kate-trysh-s8u1Gv2uF3o-unsplash.jpg');" name="price" id="price">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-                    <div style="height: 200px;"></div>
+                    <div style="height: 400px;"></div>
                   </section>
 
                   <!-- Content section -->
@@ -165,9 +165,9 @@
                   </section>
 
                     <!-- Image Section - set the background image for the header in the line below -->
-                  <section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1077');">
+                  <section class="py-5 bg-image-full" style="background-image: url('/images/adam-solomon-WHUDOzd5IYU-unsplash.jpg');" name="contact" id="contact">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-                    <div style="height: 200px;"></div>
+                    <div style="height: 400px;"></div>
                   </section>
 
                   <!-- Content section -->
@@ -182,7 +182,7 @@
                   <!-- Footer -->
                   <footer class="py-5 bg-dark">
                     <div class="container">
-                      <p class="m-0 text-center text-white">Copyright &copy; My Award 2020</p>
+                      <p class="m-0 text-center text-white">Copyright &copy; My Education Award 2020</p>
                     </div>
                     <!-- /.container -->
                   </footer>
@@ -191,5 +191,25 @@
           <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+$(function(){
+    //锚点跳转滑动效果  
+    $('a[href=#price]').click(function() {  
+        console.log(this.pathname)  
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {  
+            var $target = $(this.hash);  
+            $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');  
+            if ($target.length) {  
+                var targetOffset = $target.offset().top-50;  
+                $('html,body').animate({  
+                            scrollTop: targetOffset  
+                        },  
+                        1000);  
+                return false;  
+            }  
+        }  
+    }); 
+})
+</script>
     </body>
 </html>
