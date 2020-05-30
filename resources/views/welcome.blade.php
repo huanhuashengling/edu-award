@@ -22,6 +22,7 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                overflow: hidden;
             }
 
             .full-height {
@@ -46,6 +47,12 @@
 
             .content {
                 text-align: center;
+                overflow: scroll;
+              height: 100vh;
+              scroll-behavior:smooth;
+              scroll-snap-type: proximity;
+              scroll-snap-points-y: repeat(100vh);
+              scroll-snap-type: y proximity;
             }
 
             .title {
@@ -64,6 +71,11 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .gallery {
+                  scroll-snap-align: start;
+                  position: relative;
             }
         </style>
     </head>
@@ -119,10 +131,11 @@
               </nav>
 
             <div class="content">
+                <div class="gallery">
                   <!-- Header - set the background image for the header in the line below -->
                   <header class="py-5 bg-image-full" style="background-image: url('/images/luke-ellis-craven-yCsk1q2Eq0o-unsplash.jpg');" name="home" id="home">
                     <!-- <img class="img-fluid d-block mx-auto" src="/images/icons8-medal-100.png" alt=""> -->
-                    <div style="height: 300px;"></div>
+                    <div style="height: 400px;"></div>
                   </header>
 
                   <!-- Content section -->
@@ -133,7 +146,9 @@
                       <p>记录并管理我们教育生涯中所获得的荣誉.</p>
                     </div>
                   </section>
+                </div>
 
+                <div class="gallery">
                   <!-- Image Section - set the background image for the header in the line below -->
                   <section class="py-5 bg-image-full" style="background-image: url('/images/jess-bailey-q10VITrVYUM-unsplash.jpg');" name="services" id="services">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
@@ -144,11 +159,12 @@
                   <section class="py-5">
                     <div class="container">
                       <h1>服务</h1>
-                      <p class="lead">存储 可视 数据 趋势 故事</p>
+                      <p class="lead">可视 存储 趋势 故事</p>
                       <p>让你对自己的荣誉管理得心应手</p>
                     </div>
                   </section>
-
+                </div>
+                <div class="gallery">
                     <!-- Image Section - set the background image for the header in the line below -->
                   <section class="py-5 bg-image-full" style="background-image: url('/images/kate-trysh-s8u1Gv2uF3o-unsplash.jpg');" name="price" id="price">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
@@ -163,7 +179,8 @@
                       <p>基础用户，每人每年50元人民币.</p>
                     </div>
                   </section>
-
+                </div>
+                <div class="gallery">
                     <!-- Image Section - set the background image for the header in the line below -->
                   <section class="py-5 bg-image-full" style="background-image: url('/images/adam-solomon-WHUDOzd5IYU-unsplash.jpg');" name="contact" id="contact">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
@@ -178,7 +195,7 @@
                       <p>我希望得到你的任何反馈.</p>
                     </div>
                   </section>
-
+                </div>
                   <!-- Footer -->
                   <footer class="py-5 bg-dark">
                     <div class="container">
@@ -190,26 +207,14 @@
         
           <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
+  <script src="http://www.zhangxinxu.com/study/js/jquery.anchor.1.0.js" type="text/javascript" charset="utf-8"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
-  <script>
-$(function(){
-    //锚点跳转滑动效果  
-    $('a[href=#price]').click(function() {  
-        console.log(this.pathname)  
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {  
-            var $target = $(this.hash);  
-            $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');  
-            if ($target.length) {  
-                var targetOffset = $target.offset().top-50;  
-                $('html,body').animate({  
-                            scrollTop: targetOffset  
-                        },  
-                        1000);  
-                return false;  
-            }  
-        }  
-    }); 
-})
-</script>
+  <script type="text/javascript">
+      $(".nav-link").click(function() {
+        $(".nav-item").removeClass("active");
+        $(this).parent().addClass("active");
+      });
+
+  </script>
     </body>
 </html>
