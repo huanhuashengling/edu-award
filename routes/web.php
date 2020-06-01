@@ -20,13 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/list', 'AwardController@list')->name('list');
-Route::get('/create', 'AwardController@create')->name('create');
-Route::get('/detail/{id}', 'AwardController@detail')->name('detail');
-Route::get('/edit/{id}', 'AwardController@edit')->name('edit');
-Route::post('/vision/{id}', 'AwardController@vision')->name('vision');
+Route::get('/award/list', 'AwardController@list')->name('list');
+Route::get('/award/create', 'AwardController@create')->name('create');
+Route::get('/award/detail/{id}', 'AwardController@detail')->name('detail');
+Route::get('/award/edit/{id}', 'AwardController@edit')->name('edit');
+Route::post('award/vision/{id}', 'AwardController@vision')->name('vision');
 Route::get('/dashboard', 'AwardController@dashboard')->name('dashboard');
-Route::post('/save', 'AwardController@save')->name('save.award.post');
+Route::post('/award/save', 'AwardController@save')->name('save.award.post');
 
 Route::get('image-upload', 'ImageUploadController@imageUpload')->name('upload');
 

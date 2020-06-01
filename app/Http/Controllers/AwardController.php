@@ -108,7 +108,8 @@ class AwardController extends Controller
 
   public function dashboard()
   {
-    return view('award.dashboard');
+    $awards = Award::all();
+    return view('award.dashboard', compact("awards"));
   }
 
   public function requestToGoogleAPI($uniqid, $filePath)

@@ -3,10 +3,7 @@
   @section('content')
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">荣誉列表
-          </div>
+      <div class="col-md-12">
           @if ($message = Session::get('success'))
           <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -36,7 +33,6 @@
             @endif
             @endforeach
           </div>
-        </div>
       </div>
     </div>
   </div>

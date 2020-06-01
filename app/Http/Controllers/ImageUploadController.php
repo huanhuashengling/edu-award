@@ -40,7 +40,7 @@ class ImageUploadController extends Controller
     request()->image->move(public_path('images'), $imageName);
 
     return back()
-      ->with('success','You have successfully upload image.')
+      ->with('success','图片上传成功！')
       ->with('image',$imageName);
   }
 }

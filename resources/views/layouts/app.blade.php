@@ -10,9 +10,14 @@
     <title>{{ config('app.name', 'My Honor') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,7 +29,7 @@
   </head>
   <body>
     <div id="app">
-      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'My Award') }}
@@ -39,13 +44,13 @@
             @else
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}">荣誉数据</a>
+                <a class="nav-link {{ Request::segment(1) === 'dashboard' ? 'active' : null }}" href="{{ route('dashboard') }}">荣誉数据</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('upload') }}">上传荣誉</a>
+                <a class="nav-link {{ Request::segment(1) === 'image-upload' ? 'active' : null }}" href="{{ route('upload') }}">上传荣誉</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('list') }}">荣誉列表</a>
+                <a class="nav-link {{ Request::segment(1) === 'award' ? 'active' : null }}" href="{{ route('list') }}">荣誉列表</a>
               </li>
             </ul>
             @endguest
@@ -87,7 +92,6 @@
         </div>
       </div>
     </nav>
-
     <main class="py-4">
       @yield('content')
     </main>

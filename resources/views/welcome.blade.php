@@ -50,9 +50,9 @@
                 overflow: scroll;
               height: 100vh;
               scroll-behavior:smooth;
-              scroll-snap-type: proximity;
+              scroll-snap-type: mandatory;
               scroll-snap-points-y: repeat(100vh);
-              scroll-snap-type: y proximity;
+              scroll-snap-type: y mandatory;
             }
 
             .title {
@@ -119,12 +119,23 @@
                       <li class="nav-item">
                         <a class="nav-link" href="#contact">联系</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">登录</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">注册</a>
-                      </li>
+                      @if (Route::has('login'))
+                            @auth
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{ route('dashboard') }}">主页</a>
+                              </li>
+                            @else
+                              <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">登录</a>
+                              </li>
+
+                                @if (Route::has('register'))
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">注册</a>
+                                  </li>
+                                @endif
+                            @endauth
+                    @endif
                     </ul>
                   </div>
                 </div>
@@ -135,7 +146,7 @@
                   <!-- Header - set the background image for the header in the line below -->
                   <header class="py-5 bg-image-full" style="background-image: url('/images/luke-ellis-craven-yCsk1q2Eq0o-unsplash.jpg');" name="home" id="home">
                     <!-- <img class="img-fluid d-block mx-auto" src="/images/icons8-medal-100.png" alt=""> -->
-                    <div style="height: 400px;"></div>
+                    <div style="height: 300px;"></div>
                   </header>
 
                   <!-- Content section -->
@@ -152,7 +163,7 @@
                   <!-- Image Section - set the background image for the header in the line below -->
                   <section class="py-5 bg-image-full" style="background-image: url('/images/jess-bailey-q10VITrVYUM-unsplash.jpg');" name="services" id="services">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-                    <div style="height: 400px;"></div>
+                    <div style="height: 300px;"></div>
                   </section>
 
                   <!-- Content section -->
@@ -168,7 +179,7 @@
                     <!-- Image Section - set the background image for the header in the line below -->
                   <section class="py-5 bg-image-full" style="background-image: url('/images/kate-trysh-s8u1Gv2uF3o-unsplash.jpg');" name="price" id="price">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-                    <div style="height: 400px;"></div>
+                    <div style="height: 300px;"></div>
                   </section>
 
                   <!-- Content section -->
@@ -184,7 +195,7 @@
                     <!-- Image Section - set the background image for the header in the line below -->
                   <section class="py-5 bg-image-full" style="background-image: url('/images/adam-solomon-WHUDOzd5IYU-unsplash.jpg');" name="contact" id="contact">
                     <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-                    <div style="height: 400px;"></div>
+                    <div style="height: 300px;"></div>
                   </section>
 
                   <!-- Content section -->
@@ -214,7 +225,6 @@
         $(".nav-item").removeClass("active");
         $(this).parent().addClass("active");
       });
-
   </script>
     </body>
 </html>
