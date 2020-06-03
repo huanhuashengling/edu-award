@@ -8,7 +8,7 @@ $(document).ready(function() {
   $("#vision-btn").click(function() {
     $.ajax({
       type: "POST",
-      url: '/vision/'+$(this).val(),
+      url: '/award/vision/'+$(this).val(),
       success: function( data ) {
         console.log(data);
         $("#isVisionedCheck").attr("checked", "checked");
