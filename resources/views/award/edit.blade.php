@@ -127,7 +127,7 @@
                 <select name="schoolSectionsId" class="form-control" required>
                   <option value="" selected>请选择学段</option>
                   @foreach($schoolSections as $schoolSection)
-                  <option value="{{$schoolSection->id}}" {{($award->schoolSections_id == $schoolSection->id)?"selected":""}}>
+                  <option value="{{$schoolSection->id}}" {{($award->school_sections_id == $schoolSection->id)?"selected":""}}>
                     {{$schoolSection->label}}</option>
                   @endforeach
                 </select>
