@@ -17,5 +17,8 @@ class AwardTypeSeeder extends Seeder
       DB::table('award_types')->insert([
         'label' => "课堂教学"
       ]);
+      DB::table('award_types')->insert([
+        'label' => "技能展示"
+      ]);
     }
 }

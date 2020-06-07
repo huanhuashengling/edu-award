@@ -28,7 +28,7 @@
           <div class="row">
             @foreach ($awards as $key => $award)
             <div class="col-4">
-              <a href="{{ route('edit', $award->id) }}"><img class='award-img img-thumbnail' src=/images/{{$award->img_url}}></img>
+              <a href="{{ route('edit', $award->id) }}"><img class='award-img img-thumbnail' src="{{Storage::url($award->img_url)}}"></img>
               </a>
             </div>
             @if ((($key+1) % 3) === 0)

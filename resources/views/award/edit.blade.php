@@ -10,7 +10,7 @@
           
           <div class="card-body">
           <div class="text-center">
-            <img class="img-thumbnail img-fluid" style="width: 500px" src="/images/{{$award->img_url}}" />
+            <img class="img-thumbnail img-fluid" style="width: 500px" src="{{Storage::url($award->img_url)}}" />
           </div>
           @if (session('status'))
           <div class="alert alert-success" role="alert">
@@ -44,7 +44,7 @@
           
           <form action="{{ route('save.award.post') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="awards_id" value="{{$award->id}}">
+            <input type="hidden" name="awards_id" id="awards-id" value="{{$award->id}}">
             <input type="hidden" name="hiddenVisionTxt" id="hiddenVisionTxt">
             <!-- <div class="form-group">
               <label>
@@ -166,11 +166,14 @@
           </form>
         </div>
       </div>
+      <div class="text-center">
+        <button type="submit" id="del-award-btn" class="btn btn-danger">删除</button>
+      </div>
     </div>
   </div>
 </div>
 @endsection
 
 @section('scripts')
-<script src="/js/list.js?v={{rand()}}"></script>
+<script src="/js/edit.js?v={{rand()}}"></script>
 @endsection

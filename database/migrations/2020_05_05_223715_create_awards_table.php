@@ -45,6 +45,10 @@ class CreateAwardsTable extends Migration
             $table->string('subjects_id')->nullable();
             // school_sections_id 所属学段
             $table->string('school_sections_id')->nullable();
+            // unique_id 存储文件的唯一编码
+            $table->string('unique_id')->nullable();
+            // is_public 是否公开别人可见
+            $table->string('is_public')->nullable();
             $table->timestamps();
         });
     }

@@ -60,6 +60,32 @@ class AwardController extends Controller
     return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects', 'schoolSections'));
   }
 
+  public function delete(Request $request)
+  {
+    $awardsId = $request->get('awardsId');
+    $award = Award::find($awardsId);
+
+    $pagejsonfilename = $award->unique_id . "_pages.json";
+    $infojsonfilename = $award->unique_id . "_info.json";
+    $txtfilename = $award->unique_id . ".txt";
+    $imagefilename = $award->img_url;
+
+    if (Storage::disk('public')->has($pagejsonfilename)) {
+      Storage::disk('public')->delete($pagejsonfilename);
+    }
+    if (Storage::disk('public')->has($infojsonfilename)) {
+      Storage::disk('public')->delete($infojsonfilename);
+    }
+    if (Storage::disk('public')->has($txtfilename)) {
+      Storage::disk('public')->delete($txtfilename);
+    }
+    if (Storage::disk('public')->has($imagefilename)) {
+      Storage::disk('public')->delete($imagefilename);
+    }
+    $award->delete();
+    return redirect()->route('list');
+  }
+
   public function save(Request $request)
   {
     $this->validate(request(), [
@@ -102,7 +128,7 @@ class AwardController extends Controller
     $awardsId = $request->route('id');
     $award = Award::find($awardsId);
     // dd(public_path("images/" . $award->img_url));
-    return $this->requestToGoogleAPI(time(), public_path("images/" . $award->img_url));
+    return $this->requestToGoogleAPI($award->unique_id, public_path("images/" . $award->img_url));
     // return $this->requestToGoogleAPI(time(), "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484249087,538554565&fm=15&gp=0.jpg");
   }
 

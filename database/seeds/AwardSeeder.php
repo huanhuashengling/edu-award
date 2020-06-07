@@ -22,6 +22,8 @@ class AwardSeeder extends Seeder
         'award_date' => "",
         'is_visioned' => "false",
         'vision_txt' => "",
+        'unique_id' => "1588686399",
+        'is_public' => "false",
       ]);
 
       DB::table('awards')->insert([
@@ -35,6 +37,8 @@ class AwardSeeder extends Seeder
         'award_date' => "",
         'is_visioned' => "false",
         'vision_txt' => "",
+        'unique_id' => "1589495785",
+        'is_public' => "false",
       ]);
     }
 }

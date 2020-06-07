@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Award;
 
+use \Storage;
+
 class ImageUploadController extends Controller
 {
   /**
@@ -29,15 +31,18 @@ class ImageUploadController extends Controller
     request()->validate([
       'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
-
-    $imageName = time().'.'.request()->image->getClientOriginalExtension();
+    $uniqueId = uniqid();
+    $imageName = $uniqueId.'.'.request()->image->getClientOriginalExtension();
 
     $award = new Award();
     $award->img_url = $imageName;
     $award->is_visioned = "false";
+    $award->unique_id = $uniqueId;
     $award->save();
 
-    request()->image->move(public_path('images'), $imageName);
+    $bool = Storage::disk('public')->put($imageName, file_get_contents(request()->image));
+    
+    // y';pullyb lpnl->move(public_path('images'), $imageName);
 
     return back()
       ->with('success','图片上传成功！')

@@ -31,7 +31,7 @@
           <button type="button" class="close" data-dismiss="alert">×</button>
           <strong>{{ $message }}</strong>
         </div>
-        <img class="img-fluid img-" src="images/{{ Session::get('image') }}">
+        <img class="img-fluid" src="{{Storage::url(Session::get('image'))}}">
         @endif
       </div>
     </div>
