@@ -128,7 +128,7 @@ class AwardController extends Controller
     $awardsId = $request->route('id');
     $award = Award::find($awardsId);
     // dd(public_path("images/" . $award->img_url));
-    return $this->requestToGoogleAPI($award->unique_id, Storage::url($award->img_url));
+    return $this->requestToGoogleAPI($award->unique_id, public_path(Storage::url($award->img_url)));
     // return $this->requestToGoogleAPI(time(), "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484249087,538554565&fm=15&gp=0.jpg");
   }
 
