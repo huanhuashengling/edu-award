@@ -15,10 +15,12 @@
             </ul>
           </div>
           @endif
+
+          <div>筛选</div>
+          <div>排序</div>
           <div class="row">
             @foreach ($awards as $key => $award)
             <div class="col-4">
-
                 <a href="{{ route('edit', $award->id) }}"><img class='award-img img-thumbnail' src="{{Storage::url($award->img_url)}}"></img>
               </a>
             </div>

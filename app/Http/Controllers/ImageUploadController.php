@@ -29,20 +29,22 @@ class ImageUploadController extends Controller
   public function imageUploadPost()
   {
     request()->validate([
-      'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      'images' => 'required',
+      'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
-    $uniqueId = uniqid();
-    $imageName = $uniqueId.'.'.request()->image->getClientOriginalExtension();
 
-    $award = new Award();
-    $award->img_url = $imageName;
-    $award->is_visioned = "false";
-    $award->unique_id = $uniqueId;
-    $award->save();
+    foreach(request()->images as $image) {
+      $uniqueId = uniqid();
+      $imageName = $uniqueId.'.'.$image->getClientOriginalExtension();
 
-    $bool = Storage::disk('public')->put($imageName, file_get_contents(request()->image));
-    
-    // y';pullyb lpnl->move(public_path('images'), $imageName);
+      $award = new Award();
+      $award->img_url = $imageName;
+      $award->is_visioned = "false";
+      $award->unique_id = $uniqueId;
+      $award->save();
+
+      $bool = Storage::disk('public')->put($imageName, file_get_contents($image));
+    }
 
     return back()
       ->with('success','图片上传成功！')

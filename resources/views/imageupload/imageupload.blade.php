@@ -19,7 +19,7 @@
         @endif
         <form action="{{ route('upload.post') }}" method="POST" enctype="multipart/form-data">
           @csrf
-          <input id="input-image" name="image" class="file" data-language="zh", type="file" class="form-control">
+          <input id="input-image" name="images[]" multiple='multiple' data-max-file-size="1000" data-language="zh", type="file" class="form-control file"  data-show-upload="true" accept="jpg|jpeg|png" data-allowed-file-extensions='["jpg", "jpeg", "png"]' data-show-caption='true' data-max-file-count=10 data-theme="fas">
         </form>
       </div>
     </div>
@@ -41,8 +41,11 @@
 @endsection
 
 @section('scripts')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.1/js/fileinput.min.js"></script>
+    <link href="/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    
+    <script src="/js/fileinput.min.js"></script>
+    <script src="/js/themes/fas/theme.js"></script>
     <script src="/js/locales/LANG.js"></script>
+    
 <script src="/js/image-upload.js?v={{rand()}}"></script>
 @endsection
