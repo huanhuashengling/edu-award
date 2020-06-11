@@ -10,7 +10,7 @@
           
           <div class="card-body">
           <div class="text-center">
-            <img class="img-thumbnail img-fluid" style="width: 500px" src="{{Storage::url($award->img_url)}}" />
+            <img class="img-thumbnail img-fluid" style="width: 500px" src="{{Storage::url($award->thumb_url)}}" />
           </div>
           @if (session('status'))
           <div class="alert alert-success" role="alert">

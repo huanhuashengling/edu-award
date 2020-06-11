@@ -20,8 +20,8 @@
           <div>排序</div>
           <div class="row">
             @foreach ($awards as $key => $award)
-            <div class="col-4">
-                <a href="{{ route('edit', $award->id) }}"><img class='award-img img-thumbnail' src="{{Storage::url($award->img_url)}}"></img>
+            <div class="col-4 py-3">
+                <a href="{{ route('edit', $award->id) }}"><img class='award-img img-thumbnail' src="{{Storage::url($award->thumb_url)}}"></img>
               </a>
             </div>
             @if ((($key+1) % 3) === 0)

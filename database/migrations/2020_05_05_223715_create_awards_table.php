@@ -49,6 +49,8 @@ class CreateAwardsTable extends Migration
             $table->string('unique_id')->nullable();
             // is_public 是否公开别人可见
             $table->string('is_public')->nullable();
+            // thumb_url 缩略图地址
+            $table->string('thumb_url');
             $table->timestamps();
         });
     }
