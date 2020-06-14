@@ -69,6 +69,7 @@ class AwardController extends Controller
     $infojsonfilename = $award->unique_id . "_info.json";
     $txtfilename = $award->unique_id . ".txt";
     $imagefilename = $award->img_url;
+    $thumbImagefilename = $award->thumb_url;
 
     if (Storage::disk('public')->has($pagejsonfilename)) {
       Storage::disk('public')->delete($pagejsonfilename);
@@ -81,6 +82,9 @@ class AwardController extends Controller
     }
     if (Storage::disk('public')->has($imagefilename)) {
       Storage::disk('public')->delete($imagefilename);
+    }
+    if (Storage::disk('public')->has($thumbImagefilename)) {
+      Storage::disk('public')->delete($thumbImagefilename);
     }
     $award->delete();
     return redirect()->route('list');
