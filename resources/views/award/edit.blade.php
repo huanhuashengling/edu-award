@@ -78,7 +78,7 @@
 
               <div class="form-group col-md-3">
                 <label for="awardee">获奖人</label>
-                <input type="text" class="form-control" name="awardee" placeholder="自己的名字" value="{{$award->awardee}}" required>
+                <input type="text" class="form-control" name="awardee" placeholder="自己的名字" value="{{$award->awardee?$award->awardee:$username}}" required>
               </div>
 
 

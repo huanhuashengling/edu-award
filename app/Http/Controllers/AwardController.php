@@ -50,6 +50,8 @@ class AwardController extends Controller
 
   public function edit(Request $request)
   {
+    $user = auth()->user();
+    $username = $user->name;
     $awardsId = $request->route('id');
     $award = Award::find($awardsId);
     $awardTypes = AwardType::all();
@@ -57,7 +59,7 @@ class AwardController extends Controller
     $awardRanks = AwardRank::all();
     $subjects = Subject::all();
     $schoolSections = SchoolSection::all();
-    return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects', 'schoolSections'));
+    return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects', 'schoolSections', 'username'));
   }
 
   public function delete(Request $request)
