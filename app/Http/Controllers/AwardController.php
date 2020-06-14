@@ -65,18 +65,18 @@ class AwardController extends Controller
     $awardsId = $request->get('awardsId');
     $award = Award::find($awardsId);
 
-    $pagejsonfilename = $award->unique_id . "_pages.json";
-    $infojsonfilename = $award->unique_id . "_info.json";
+    // $pagejsonfilename = $award->unique_id . "_pages.json";
+    // $infojsonfilename = $award->unique_id . "_info.json";
     $txtfilename = $award->unique_id . ".txt";
     $imagefilename = $award->img_url;
     $thumbImagefilename = $award->thumb_url;
 
-    if (Storage::disk('public')->has($pagejsonfilename)) {
-      Storage::disk('public')->delete($pagejsonfilename);
-    }
-    if (Storage::disk('public')->has($infojsonfilename)) {
-      Storage::disk('public')->delete($infojsonfilename);
-    }
+    // if (Storage::disk('public')->has($pagejsonfilename)) {
+    //   Storage::disk('public')->delete($pagejsonfilename);
+    // }
+    // if (Storage::disk('public')->has($infojsonfilename)) {
+    //   Storage::disk('public')->delete($infojsonfilename);
+    // }
     if (Storage::disk('public')->has($txtfilename)) {
       Storage::disk('public')->delete($txtfilename);
     }
@@ -124,7 +124,7 @@ class AwardController extends Controller
     $award->update();
     // dd(Award::find($awardsId));
     return back()
-      ->with('status','You have successfully update data.');
+      ->with('status','荣誉数据更新成功！');
   }
 
   public function vision(Request $request)
@@ -161,11 +161,11 @@ class AwardController extends Controller
     $text = $document->text();
 
   // $select = $annotation->fullText(); 
-    $bool = Storage::disk('public')->put($uniqid . '_info.json', json_encode($info));
+    // $bool = Storage::disk('public')->put($uniqid . '_info.json', json_encode($info));
     // file_put_contents(public_path($uniqid . '_info.json'), json_encode($info));
-    $jsonfilename = $uniqid . "_pages.json";
+    // $jsonfilename = $uniqid . "_pages.json";
     $txtfilename = $uniqid . ".txt";
-    $bool = Storage::disk('public')->put($jsonfilename, json_encode($pages));
+    // $bool = Storage::disk('public')->put($jsonfilename, json_encode($pages));
     $bool = Storage::disk('public')->put($txtfilename, $text);
 
     $txt_string = (Storage::disk('public')->get($uniqid . ".txt"));
