@@ -62,11 +62,14 @@ class ImageUploadController extends Controller
       })->encode('jpg', 100);
 
       $thumbImg = Image::make($image->getRealPath());
-      $thumbImg->resize(300, null, function ($constraint) {
+      $thumbImg->resize(400, null, function ($constraint) {
         $constraint->aspectRatio();
       })->encode('jpg', 100);
 
+      $user = auth()->user();
+
       $award = new Award();
+      $award->users_id = $user->id;
       $award->img_url = $imageName;
       $award->thumb_url = $thumbImageName;
       $award->is_visioned = "false";

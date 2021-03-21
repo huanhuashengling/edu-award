@@ -2,41 +2,20 @@
 
   @section('content')
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="">
-        <div class="card">
-          <div class="card-header">荣誉列表
-          </div>
-          @if ($message = Session::get('success'))
-          <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>{{ $message }}</strong>
-          </div>
-          <img src="images/{{ Session::get('image') }}">
-          @endif
-
-          @if (count($errors) > 0)
-          <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
-            <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
-          @endif
-          <div class="row">
-            @foreach ($awards as $key => $award)
-            <div class="col-4">
-              <a href="{{ route('edit', $award->id) }}"><img class='award-img img-thumbnail' src="{{Storage::url($award->img_url)}}"></img>
-              </a>
-            </div>
-            @if ((($key+1) % 3) === 0)
-            <div class="w-100"></div>
-            @endif
-            @endforeach
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-6">
+        <canvas id="numPerTypeChart" width="600" height="400"></canvas>
+      </div>
+      <div class="col-6">
+        <canvas id="numPerYearChart" width="600" height="400"></canvas>
+      </div>
+    </div>
+    <div class="row py-5">
+      <div class="col-6">
+        <canvas id="numPerLevelChart" width="600" height="400"></canvas>
+      </div>
+      <div class="col-6">
+        <canvas id="numPerRankChart" width="600" height="400"></canvas>
       </div>
     </div>
   </div>
@@ -44,5 +23,6 @@
 @endsection
 
 @section('scripts')
-<script src="/js/list.js?v={{rand()}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="/js/dashboard.js?v={{rand()}}"></script>
 @endsection

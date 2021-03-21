@@ -6,7 +6,9 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">编辑荣誉信息</div>
+        <div class="card-header">编辑荣誉信息
+          <div style="float: right"><a href="/award/list" class="btn btn-warning btn-sm"><< 返回列表</a></div>
+        </div>
           
           <div class="card-body">
           <div class="text-center">
@@ -127,7 +129,7 @@
                 <select name="schoolSectionsId" class="form-control" required>
                   <option value="" selected>请选择学段</option>
                   @foreach($schoolSections as $schoolSection)
-                  <option value="{{$schoolSection->id}}" {{($award->school_sections_id == $schoolSection->id)?"selected":""}}>
+                  <option value="{{$schoolSection->id}}" {{($defaultSchoolSectionsId == $schoolSection->id)?"selected":""}}>
                     {{$schoolSection->label}}</option>
                   @endforeach
                 </select>
@@ -138,7 +140,7 @@
                 <select name="subjectsId" class="form-control" required>
                   <option value="" selected>请选择学科</option>
                   @foreach($subjects as $subject)
-                  <option value="{{$subject->id}}" {{($award->subjects_id == $subject->id)?"selected":""}}>
+                  <option value="{{$subject->id}}" {{($defaultSubjectsId == $subject->id)?"selected":""}}>
                     {{$subject->label}}</option>
                   @endforeach
                 </select>

@@ -12,6 +12,7 @@ class AwardSeeder extends Seeder
     public function run()
     {
       DB::table('awards')->insert([
+        'users_id' => "1",
         'awardee' => "",
         'award_types_id' => '',
         'title' => '',
@@ -28,6 +29,7 @@ class AwardSeeder extends Seeder
       ]);
 
       DB::table('awards')->insert([
+        'users_id' => "1",
         'awardee' => "",
         'award_types_id' => '',
         'title' => '',

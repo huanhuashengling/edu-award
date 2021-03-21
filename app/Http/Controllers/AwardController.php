@@ -32,7 +32,11 @@ class AwardController extends Controller
 
   public function list()
   {
-    $awards = Award::all();
+    $awards = Award::select('awards.*', "award_types.label as type_label", 'award_levels.label as level_label', 'award_ranks.label as rank_label')
+    ->leftJoin('award_types', 'award_types.id', '=', "awards.award_types_id")
+    ->leftJoin('award_levels', 'award_levels.id', '=', "awards.award_levels_id")
+    ->leftJoin('award_ranks', 'award_ranks.id', '=', "awards.award_ranks_id")
+    ->get();
     return view('award.list', compact('awards'));
   }
 
@@ -59,7 +63,9 @@ class AwardController extends Controller
     $awardRanks = AwardRank::all();
     $subjects = Subject::all();
     $schoolSections = SchoolSection::all();
-    return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects', 'schoolSections', 'username'));
+    $defaultSubjectsId = isset($award->subjects_id)?$award->subjects_id:$user->subjects_id;
+    $defaultSchoolSectionsId = isset($award->school_sections_id)?$award->school_sections_id:$user->school_sections_id;
+    return view('award.edit', compact('award', 'awardTypes', 'awardLevels', 'awardRanks', 'subjects', 'schoolSections', 'username', 'defaultSubjectsId', 'defaultSchoolSectionsId'));
   }
 
   public function delete(Request $request)
@@ -138,11 +144,7 @@ class AwardController extends Controller
     // return $this->requestToGoogleAPI(time(), "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1484249087,538554565&fm=15&gp=0.jpg");
   }
 
-  public function dashboard()
-  {
-    $awards = Award::all();
-    return view('award.dashboard', compact("awards"));
-  }
+
 
   public function requestToGoogleAPI($uniqid, $filePath)
   {
@@ -270,5 +272,4 @@ class AwardController extends Controller
 
     return Redirect::to('report-list');
   }
-
 }

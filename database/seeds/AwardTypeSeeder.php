@@ -12,18 +12,15 @@ class AwardTypeSeeder extends Seeder
     public function run()
     { 
       DB::table('award_types')->insert([
-        ['label' => "教学论文"],
-        ['label' => "教学视频"],
+        ['label' => "论文撰写"],
         ['label' => "课堂教学"],
-        ['label' => "说课"],
-        ['label' => "评课"],
-        ['label' => "技能展示"],
+        ['label' => "教学视频"],
         ['label' => "摄影作品"],
-        ['label' => "微课制作"],
-        ['label' => "课件制作"],
-        ['label' => "优秀指导教师"],
-        ['label' => "教研活动积极分子"],
-        ['label' => "优秀教师"],
+        ['label' => "微课作品"],
+        ['label' => "课件作品"],
+        ['label' => "技能展示"],
+        ['label' => "综合评定"],
+        ['label' => "其他"],
       ]);
     }
 }

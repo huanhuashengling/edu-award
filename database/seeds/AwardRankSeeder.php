@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Models\AwardRank;
+
 class AwardRankSeeder extends Seeder
 {
     /**
@@ -11,14 +13,12 @@ class AwardRankSeeder extends Seeder
      */
     public function run()
     {
+        AwardRank::truncate();
       DB::table('award_ranks')->insert([
         ['label' => "特等奖"],
         ['label' => "一等奖"],
         ['label' => "二等奖"],
         ['label' => "三等奖"],
-        ['label' => "第一名"],
-        ['label' => "第二名"],
-        ['label' => "第三名"],
         ['label' => "优胜奖"],
       ]);
     }

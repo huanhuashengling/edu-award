@@ -17,4 +17,11 @@ $(document).ready(function() {
       }
     });
   });
-});
+
+  $('.img-container').mouseover(function () {
+    $('.overlay').show();
+  }).mouseout(function () {
+      $('.overlay').hide();
+  });
+
+});//<a href="{{ route('edit', $award->id) }}"></a>

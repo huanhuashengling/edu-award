@@ -15,6 +15,8 @@ class CreateAwardsTable extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->id();
+            // users_id 获奖人
+            $table->string('users_id');
             // awardee 获奖人
             $table->string('awardee')->nullable();
             // award_types_id 荣誉类型

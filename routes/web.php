@@ -42,10 +42,17 @@ Route::get('/award/create', 'AwardController@create')->name('create');
 Route::get('/award/detail/{id}', 'AwardController@detail')->name('detail');
 Route::get('/award/edit/{id}', 'AwardController@edit')->name('edit');
 Route::post('award/vision/{id}', 'AwardController@vision')->name('vision');
-Route::get('/dashboard', 'AwardController@dashboard')->name('dashboard');
 Route::post('/award/save', 'AwardController@save')->name('save.award.post');
 Route::get('/award/delete', 'AwardController@delete')->name('delete.award.get');
 
-Route::get('image-upload', 'ImageUploadController@imageUpload')->name('upload');
 
+Route::get('image-upload', 'ImageUploadController@imageUpload')->name('upload');
 Route::post('image-upload', 'ImageUploadController@imageUploadPost')->name('upload.post');
+
+
+Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+Route::get('/dashboard/numPerTypeChart', 'DashboardController@numPerTypeChart')->name('dashboard.numPerTypeChart.get');
+Route::get('/dashboard/numPerYearChart', 'DashboardController@numPerYearChart')->name('dashboard.numPerYearChart.get');
+Route::get('/dashboard/numPerLevelChart', 'DashboardController@numPerLevelChart')->name('dashboard.numPerLevelChart.get');
+Route::get('/dashboard/numPerRankChart', 'DashboardController@numPerRankChart')->name('dashboard.numPerRankChart.get');
+ 
